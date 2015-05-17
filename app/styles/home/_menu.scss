@@ -1,0 +1,63 @@
+.menu {
+  @include stretch(0,0,0,0);
+  background-color: $color-secondary;
+
+  .ios7 & {
+    .menu__header {
+      margin-top: 20px;
+    }
+    .menu__close {
+      top: 30px;
+    }
+  }
+
+  .menu__header {
+    margin-top: 10px;
+    line-height: 60px;
+    text-align: center;
+    height: 60px;
+    @include desktop { height: 80px; }
+
+    h1 {
+      color: #FFFFFF;
+      margin: 0;
+    }
+  }
+
+  .menu__item-list {
+    padding: 0 0 10px 0;
+    @include desktop { padding-bottom: 20px; }
+
+    &.menu__item-list--bottom {
+      @include stretch(auto, 0, 0, 0);
+
+      @include too-small-height { display: none; }
+
+      .item {
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    .item {
+      @include active-bg(rgba(255, 255, 255, 0.2));
+      padding: 20px 20px;
+      color: #FFFFFF;
+      text-align: center;
+      font-weight: 200;
+      text-transform: lowercase;
+      letter-spacing: 1px;
+
+      @include desktop { font-size: 18px; }
+      @include small-height { padding: 12px 0; font-size: 18px; }
+
+      .no-touch & {
+        &:hover {
+          background-color: rgba(255,255,255,0.1);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

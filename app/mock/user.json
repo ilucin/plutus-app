@@ -1,0 +1,30 @@
+{
+  "id": 1,
+  "name": "Ivo Ivic",
+  "email": "ivo@ivic.iv",
+  "authToken": "ivo",
+  "accounts": [{
+    "id": 1,
+    "balance": "12190",
+    "name": "Card"
+  }, {
+    "id": 2,
+    "name": "Cash",
+    "balance": "1700"
+  }],
+  "categories": [{
+    "id": 1,
+    "name": "House",
+    "type": "expense"
+  }, {
+    "id": 2,
+    "name": "Salary",
+    "type": "income"
+  }],
+  "transactions": [{
+    "id": 1,
+    "categoryId": 2,
+    "amount": 12190,
+    "createdAt": ""
+  }]
+}

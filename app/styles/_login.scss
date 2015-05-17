@@ -1,0 +1,56 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-secondary;
+  color: $color-primary;
+
+  .__header {
+    flex: 1;
+    display: flex;
+  }
+
+  .__form {
+    height: 210px;
+    padding: 0 30px;
+  }
+
+  .__input {
+    margin-top: 10px;
+  }
+
+  .__button-login {
+    margin-top: 40px;
+    color: $color-secondary;
+  }
+
+  .__button-login {
+    display: block;
+  }
+
+  .__footer {
+    flex: 1;
+    display: flex;
+  }
+
+  .__app-title {
+    margin: auto;
+    font-size: 42px;
+    font-weight: 200;
+  }
+
+  .__about {
+    margin: auto;
+    font-size: 26px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    @include active-bg($hover-darker);
+  }
+}

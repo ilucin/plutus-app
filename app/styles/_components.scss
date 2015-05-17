@@ -1,0 +1,190 @@
+.dialog {
+  @include stretch(0, 0, 0, 0);
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  flex-direction: vertical;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 150ms;
+
+  &.shown {
+    opacity: 1;
+  }
+
+  .__dialog-content {
+    background-color: $color-primary;
+    margin: auto;
+    padding: 10px;
+    max-width: 80%;
+    text-align: center;
+    min-width: 65%;
+    border-radius: 2px;
+  }
+
+  .__title {
+    color: $color-secondary;
+    padding: 5px 10px;
+    font-size: 20px;
+    word-wrap: break-word;
+  }
+}
+
+.empty-view {
+  padding: 20px;
+}
+
+abbr.datetime {
+  display: block;
+  border-bottom: 0;
+}
+
+.button {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  background-color: $color-primary;
+  color: $color-third;
+  height: 55px;
+  line-height: 55px;
+  font-size: 20px;
+  font-weight: 200;
+  padding: 0 10px;
+
+  @include active-bg(darken($color-primary, 5%));
+}
+
+.select {
+  .__selected-value {
+    @include active-bg($color-third-light);
+    text-align: center;
+    cursor: pointer;
+    color: $color-third;
+    line-height: 25px;
+    font-weight: 200;
+    padding: 10px 10px;
+    border: 1px solid $color-third;
+    border-radius: 2px;
+    background-color: $color-primary-light;
+  }
+
+  select {
+    display: none;
+  }
+
+  &.red {
+    .__selected-value {
+      @include active-bg($color-secondary-light);
+      border-color: $color-secondary;
+      color: $color-secondary;
+    }
+  }
+}
+
+.select-underlay {
+  @include stretch(0, 0, 0, 0);
+  z-index: 9999;
+
+  .__options-container {
+    @include stretch(0, 0, auto, 0);
+    border: 1px solid $color-third;
+    border-radius: 2px;
+    background-color: $color-primary;
+    max-height: 200px;
+    overflow: auto;
+    box-sizing: border-box;
+    background-color: $color-primary-light;
+  }
+
+  .__option {
+    @include active-bg($color-third-light);
+    text-align: center;
+    cursor: pointer;
+    color: $color-third;
+    line-height: 25px;
+    font-weight: 200;
+    padding: 10px 10px;
+
+    &.selected {
+      font-weight: bold;
+    }
+  }
+
+  &.red {
+    .__options-container {
+      border-color: $color-secondary;
+    }
+
+    .__option {
+      @include active-bg($color-secondary-light);
+      color: $color-secondary;
+    }
+  }
+}
+
+.back-button {
+  width: 50px;
+  height: 50px;
+  background: {
+    repeat: no-repeat;
+    image: url(../images/ic-back.svg);
+    position: 50%;
+  }
+  @include active-bg($hover-darker);
+}
+
+.input {
+  position: relative;
+  border-bottom: 1px solid $color-secondary;
+  height: 40px;
+
+  &.input-secondary {
+    border-bottom: 1px solid $color-primary;
+    background-color: $color-secondary;
+    height: 50px;
+
+    input {
+      color: $color-primary;
+      font-size: 20px;
+
+      &::-webkit-input-placeholder {
+        color: $color-primary;
+      }
+    }
+  }
+
+  input {
+    @include stretch(0, 0, 0, 0);
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    padding: 5px;
+    border: 0;
+    background-color: transparent;
+    color: $color-secondary;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 200;
+
+    &::-webkit-input-placeholder {
+      color: $color-secondary;
+      opacity: 0.8;
+    }
+  }
+}
+
+.money {
+  color: $color-third;
+  text-transform: uppercase;
+
+  .value {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .currency {
+    font-weight: normal;
+    font-size: 14px;
+  }
+}

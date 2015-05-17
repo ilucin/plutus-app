@@ -1,0 +1,41 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title> Plutus </title>
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- build:x .empty -->
+<!--     <script src="bower_components/hammer-touchemulator/touch-emulator.js"></script>
+    <script> TouchEmulator(); </script> -->
+    <!-- endbuild -->
+    <script>
+      window.ENV = "<%= env %>";
+      window.BUILD_DATETIME = "<%= time %>";
+    </script>
+  <!-- endbuild -->
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css styles/normalize.css -->
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    <!-- build:x .empty -->
+    <script> window.IS_BUILD = false; </script>
+    <!-- endbuild -->
+</head>
+<body>
+  <div id="main" class="has-navigation"></div>
+  <%= phonegapScript %>
+  <!-- build:js scripts/main.js -->
+  <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
+  <!-- endbuild -->
+</body>
+</html>

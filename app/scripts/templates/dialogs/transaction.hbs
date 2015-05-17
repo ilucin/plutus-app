@@ -1,0 +1,21 @@
+<div class="__title"> {{ title }} </div>
+<div class="__type-select select" data-color="{{ selectColor }}">
+  <select>
+    <option value="expense"> Expense </option>
+    <option value="income"> Income </option>
+  </select>
+</div>
+<div class="__account-select select" data-color="{{ selectColor }}" data-underlay-class="account-select-underlay">
+  <select>
+    {{#each accounts }}
+      <option value="{{ _id }}"> {{ name }} </option>
+    {{/each}}
+  </select>
+</div>
+<div class="__input-description input">
+  <input type="text" placeholder="description" value="{{ description }}"/>
+</div>
+<div class="__input-amount input">
+  <input type="number" placeholder="amount" value="{{ amount }}" min="1"/>
+</div>
+<div class="__button-save button touchable"> Save </div>

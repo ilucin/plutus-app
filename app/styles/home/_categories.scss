@@ -1,0 +1,30 @@
+.home-categories {
+
+  .__categories {
+    display: flex;
+  }
+
+  .__container {
+    flex: 1;
+    text-align: center;
+  }
+
+  .__title {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 15px 0;
+  }
+
+  .__actions {
+    @include stretch(auto, 0, 0, 0);
+    text-align: center;
+
+    .button {
+      display: block;
+    }
+  }
+}
+
+.category-item {
+  line-height: 20px;
+}

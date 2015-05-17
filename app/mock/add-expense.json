@@ -1,0 +1,19 @@
+{
+  "account": {
+    "updatedAt": "2015-05-16T13:57:27.201Z",
+    "_id": "554e4de90f8da8b80737e854",
+    "name": "Cash",
+    "balance": 101898,
+    "createdAt": "2015-05-09T18:11:53.322Z"
+  },
+  "transaction": {
+    "__v": 0,
+    "user": "554e4de90f8da8b80737e853",
+    "amount": 1,
+    "description": "",
+    "account": "554e4de90f8da8b80737e854",
+    "_id": "55574cc79e709d133cc03b41",
+    "updatedAt": "2015-05-16T13:57:27.205Z",
+    "createdAt": "2015-05-16T13:57:27.199Z"
+  }
+}

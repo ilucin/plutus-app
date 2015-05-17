@@ -1,0 +1,52 @@
+.home-settings {
+  @include stretch(0, 0, 0, 0);
+  overflow: auto;
+
+  .__section {
+    padding: 10px 20px;
+
+    .__section-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 200;
+      padding: 10px 0;
+      line-height: 30px;
+    }
+  }
+
+  .__row {
+    display: flex;
+    padding: 10px 0;
+
+    .label {
+      width: 120px;
+      text-align: left;
+      line-height: 40px;
+      color: #4A90E2;
+      padding-right: 10px;
+    }
+
+    .input,
+    .checkbox,
+    .select {
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .select {
+      select {
+        height: 40px;
+      }
+    }
+
+    .checkbox {
+      text-align: center;
+
+      input {
+        display: block;
+        margin: auto;
+        height: 40px;
+      }
+    }
+  }
+}

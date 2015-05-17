@@ -1,0 +1,38 @@
+<div class="__section collapsed">
+  <div class="__section-title"> savings mode </div>
+
+  <div class="__row">
+    <div class="label"> mode </div>
+    <div class="select">
+      <select>
+        <option value="allowed-spenditure"> allowed monthly spendings </option>
+        <option value="desired-saving"> desired montly savings </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="__row">
+    <div class="label"> monthly amount </div>
+    <div class="input">
+      <input type="number" value="{{ savingsAmount }}"/>
+    </div>
+  </div>
+</div>
+
+<div class="__section">
+  <div class="__section-title"> app settings </div>
+
+  <div class="__row">
+    <div class="label"> currency </div>
+    <div class="input">
+      <input type="text" placeholder="Currency" value="{{ currency }}"/>
+    </div>
+  </div>
+
+  <div class="__row">
+    <div class="label"> pin protection </div>
+    <div class="checkbox">
+      <input type="checkbox"/>
+    </div>
+  </div>
+</div>

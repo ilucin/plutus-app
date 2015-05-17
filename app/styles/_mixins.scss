@@ -1,0 +1,64 @@
+@mixin stretch($offset-top: 0, $offset-right: 0, $offset-bottom: 0, $offset-left: 0) {
+  position: absolute;
+  @if $offset-top {
+    top: $offset-top;
+  }
+  @if $offset-bottom {
+    bottom: $offset-bottom;
+  }
+  @if $offset-left {
+    left: $offset-left;
+  }
+  @if $offset-right {
+    right: $offset-right;
+  }
+}
+
+@mixin active-bg($bg: false) {
+  &.active {
+    @if $bg {
+      background-color: $bg;
+    } @else {
+      background-color: $hover-darker;
+    }
+  }
+}
+
+@mixin disable-input-focus-glow {
+  -moz-appearance: none;
+  &:focus {
+    outline-color: transparent;
+    outline-style: none;
+    box-shadow: none;
+  }
+}
+
+@mixin mobile {
+  @media #{$mobile} {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media #{$desktop} {
+    @content;
+  }
+}
+
+@mixin small-height {
+  @media #{$small-height} {
+    @content;
+  }
+}
+
+@mixin too-small-height {
+  @media #{$too-small-height} {
+    @content;
+  }
+}
+
+@mixin retina {
+  @media #{$retina} {
+    @content;
+  }
+}

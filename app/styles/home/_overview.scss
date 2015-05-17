@@ -1,0 +1,64 @@
+.overview {
+  $bottom-blocks-height: 120px;
+
+  .__account-overviews {
+    @include stretch(0, 0, $bottom-blocks-height, 0);
+    overflow: auto;
+  }
+
+  .__bottom-blocks {
+    @include stretch(auto, 0, 0, 0);
+    height: $bottom-blocks-height;
+    display: flex;
+  }
+
+  .__bottom-block {
+    flex: 1;
+    align-self: center;
+    height: $bottom-blocks-height - 20px;
+    padding: 10px 5px;
+  }
+
+  .__bottom-block-content {
+    margin: auto;
+    height: 100px;
+    width: 90px;
+  }
+
+  .__total-balance {
+    line-height: 20px;
+    text-align: center;
+
+    .money {
+      padding-top: 40px;
+
+      .value,
+      .currency {
+        display: block;
+      }
+    }
+  }
+
+  .__add-transaction-button {
+    @include active-bg;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background: {
+      color: $color-primary-light;
+      repeat: no-repeat;
+      size: 100%;
+      position: 50%;
+    }
+  }
+
+  .__add-expense-button {
+    background-image: url(../images/ic-add-expense.svg);
+    @include active-bg($color-secondary-light);
+  }
+
+  .__add-income-button {
+    background-image: url(../images/ic-add-income.svg);
+    @include active-bg($color-third-light);
+  }
+}

@@ -1,0 +1,84 @@
+.dialog-input {
+  min-width: 50%;
+
+  .__input {
+    margin: 10px 0;
+  }
+}
+
+.dialog-confirmation {
+
+  .__button-no {
+    color: $color-secondary;
+  }
+
+  .__button {
+    min-width: 100px;
+  }
+}
+
+.dialog-transaction {
+  min-width: 240px;
+  color: $color-secondary;
+
+  &[data-type="expense"] {
+    color: $color-secondary;
+
+    input::-webkit-input-placeholder {
+      color: $color-secondary;
+    }
+
+    .input {
+      border-color: $color-secondary;
+    }
+  }
+
+  &[data-type="income"] {
+    color: $color-third;
+
+    input::-webkit-input-placeholder {
+      color: $color-third;
+    }
+
+    .input {
+      border-color: $color-third;
+    }
+  }
+
+  &[data-mode="add"] {
+    .__type-select {
+      display: none;
+    }
+  }
+
+  &[data-mode="edit"] {
+    .__account-select {
+      display: none;
+    }
+  }
+
+  .__title,
+  input,
+  .__button-save {
+    color: inherit;
+  }
+
+  .select {
+    margin: 10px 0;
+
+    select {
+      width: 90%;
+      font-size: 18px;
+    }
+  }
+
+  .input {
+    margin: 10px 0;
+  }
+}
+
+.account-select-underlay {
+  .__options-container {
+    max-height: 214px;
+  }
+}

@@ -1,0 +1,87 @@
+.home-accounts {
+  .__accounts {
+    @include stretch(0, 0, 55px, 0);
+    overflow: auto;
+  }
+
+  .__actions {
+    @include stretch(auto, 0, 0, 0);
+    height: 55px;
+    text-align: center;
+
+    .button {
+      display: block;
+    }
+  }
+}
+
+.account-overview-item {
+  @include active-bg;
+  display: flex;
+  padding: 20px 20px;
+
+  .__name {
+    width: 150px;
+    flex: 1;
+    align-self: center;
+  }
+
+  .__balance {
+    flex: 2;
+    align-self: center;
+    text-align: center;
+  }
+
+  .__actions {
+    flex: 1;
+  }
+
+  .__correction-button {
+    @include active-bg($color-third-light);
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    padding: 0;
+    border-radius: 100%;
+    display: block;
+    background: {
+      color: $color-primary-light;
+      image: url(../images/ic-correction.svg);
+      size: 100%;
+      position: 50%;
+      repeat: no-repeat;
+    }
+  }
+}
+
+.account-item {
+  @include active-bg;
+  display: flex;
+  padding: 20px;
+  min-height: 30px;
+  line-height: 30px;
+
+  .__name {
+    flex: 1;
+  }
+
+  .__balance {
+    width: 120px;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .__button-delete {
+    width: 30px;
+    background: {
+      image: url(../images/ic-delete.svg);
+      size: 20px;
+      position: 50%;
+      repeat: no-repeat;
+    }
+
+    &.active {
+      background-size: 15px;
+    }
+  }
+}
