@@ -55,6 +55,15 @@ abbr.datetime {
   @include active-bg(darken($color-primary, 5%));
 }
 
+.buttons {
+  display: flex;
+
+  .button {
+    display: block;
+    flex: 1;
+  }
+}
+
 .select {
   .__selected-value {
     @include active-bg($color-third-light);
@@ -86,6 +95,12 @@ abbr.datetime {
   @include stretch(0, 0, 0, 0);
   z-index: 9999;
 
+  &.to-be-shown {
+    .__options-container {
+      max-height: 47px;
+    }
+  }
+
   .__options-container {
     @include stretch(0, 0, auto, 0);
     border: 1px solid $color-third;
@@ -95,6 +110,7 @@ abbr.datetime {
     overflow: auto;
     box-sizing: border-box;
     background-color: $color-primary-light;
+    transition: max-height 200ms;
   }
 
   .__option {

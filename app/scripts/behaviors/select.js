@@ -1,7 +1,9 @@
 define(['jquery', 'marionette',
+  'helpers/helpers',
   'helpers/template',
   'helpers/behavior-store'
 ], function($, Marionette,
+  helpers,
   template,
   behaviorStore
 ) {
@@ -56,7 +58,7 @@ define(['jquery', 'marionette',
       var $selectUnderlay = $(selectOptionsTemplate({
         options: options
       }));
-      $selectUnderlay.addClass($select.attr('data-color')).addClass($select.attr('data-underlay-class'));
+      $selectUnderlay.addClass($select.attr('data-color') + ' ' + $select.attr('data-underlay-class') + ' to-be-shown');
 
       $selectUnderlay.find('.__option[data-value=' + val + ']').addClass('selected');
 
@@ -69,6 +71,10 @@ define(['jquery', 'marionette',
       $('body').append($selectUnderlay);
 
       $select.addClass('active');
+
+      setTimeout(function() {
+        $selectUnderlay.removeClass('to-be-shown');
+      }, 50);
     },
 
     onSelectChange: function(ev) {
@@ -96,7 +102,10 @@ define(['jquery', 'marionette',
       var $selectUnderlay = $('.select-underlay');
       if ($selectUnderlay.length > 0) {
         $('.select.active').removeClass('active');
-        $selectUnderlay.remove();
+        helpers.onTransitionEnd($selectUnderlay[0], function() {
+          $selectUnderlay.remove();
+        });
+        $selectUnderlay.addClass('to-be-shown');
       }
     }
   });
