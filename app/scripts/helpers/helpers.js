@@ -16,11 +16,30 @@ define(['jquery'], function($) {
       return data;
     },
 
+    hash: function(val) {
+      if (val === null || val === undefined) {
+        return val;
+      }
+
+      val = val + 'salt';
+      var hash = 0;
+      var char;
+
+      for (var i = 0; i < val.length; i++) {
+        char = val.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+      }
+
+      return hash;
+    },
+
     getUrlParam: function(name) {
       name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
       var regexS = '[\\?&]' + name + '=([^&#]*)';
       var regex = new RegExp(regexS);
       var results = regex.exec(window.location.search);
+
       if (results === null) {
         return '';
       } else {
