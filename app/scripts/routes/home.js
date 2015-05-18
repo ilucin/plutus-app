@@ -51,7 +51,7 @@ define(['underscore',
   function openDialog(dialog) {
     closeDialog();
     dialogView = dialog;
-    dialog.on('destroy', navigate.back);
+    dialog.on('dialog-destroy', navigate.back);
   }
 
   var HomeSubrouter = {

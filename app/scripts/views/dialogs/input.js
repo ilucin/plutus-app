@@ -48,7 +48,7 @@ define(['jquery', 'underscore', 'marionette', 'promise',
       return new Promise(function(resolve, reject) {
         self.render();
         self.on('value', resolve);
-        self.on('destroy', reject);
+        self.on('dialog-destroy', reject);
       });
     }
   });

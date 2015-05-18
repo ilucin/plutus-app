@@ -31,6 +31,7 @@ define(['jquery', 'marionette',
       var self = this;
       helpers.onTransitionEnd(this.$dialogEl[0], function() {
         self.$dialogEl.remove();
+        self.view.trigger('dialog-destroy');
       }, 150);
       self.$dialogContent.css({
         width: self.$dialogContent.width() + 'px',
