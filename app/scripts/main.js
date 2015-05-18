@@ -7,7 +7,7 @@ require.config({
       exports: '_'
     },
     'backbone': {
-      deps: ['underscore', 'jquery', 'jquery.timeago'],
+      deps: ['underscore', 'jquery', 'jquery.timeago', 'helpers/handlebars'],
       exports: 'Backbone'
     },
     'marionette': {
