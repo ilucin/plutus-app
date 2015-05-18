@@ -13,7 +13,9 @@ define(['underscore', 'backbone',
     defaults: {
       currency: 'kn',
       isPinEnabled: false,
-      pin: ''
+      pin: '',
+      mode: 'none',
+      monthlyAmount: 1000
     },
 
     initialize: function() {
@@ -22,6 +24,7 @@ define(['underscore', 'backbone',
         this.set(storedSettings);
       }
 
+      handlebarsHelpers.setCurrency(this.get('currency'));
       this.on('change', this.onChange, this);
     },
 

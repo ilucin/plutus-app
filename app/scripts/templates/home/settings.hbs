@@ -3,10 +3,11 @@
 
   <div class="__row">
     <div class="label"> mode </div>
-    <div class="select">
+    <div class="__mode-select select" data-color="red" data-underlay-class="settings-select-underlay">
       <select>
-        <option value="allowed-spenditure"> allowed monthly spendings </option>
-        <option value="desired-saving"> desired montly savings </option>
+        <option value="none"> none </option>
+        <option value="allowed-spenditure"> monthly spendings </option>
+        <option value="desired-saving"> montly savings </option>
       </select>
     </div>
   </div>
@@ -14,13 +15,13 @@
   <div class="__row">
     <div class="label"> monthly amount </div>
     <div class="input">
-      <input type="number" value="{{ savingsAmount }}"/>
+      <input type="number" value="{{ savingsAmount }}" data-property="savingsAmount"/>
     </div>
   </div>
 </div>
 
 <div class="__section">
-  <div class="__section-title"> app settings </div>
+  <div class="__section-title"> app </div>
 
   <div class="__row">
     <div class="label"> currency </div>

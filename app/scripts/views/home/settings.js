@@ -1,7 +1,9 @@
 define(['underscore', 'marionette',
+  'behaviors/select',
   'helpers/template',
   'services/navigator'
 ], function(_, Marionette,
+  SelectBehavior,
   template,
   navigate
 ) {
@@ -15,14 +17,27 @@ define(['underscore', 'marionette',
     },
     events: {
       'change .input input': 'setInputToModel',
+      'change .__mode-select select': 'onModeSelectChange',
       'click .__pin-checkbox input': 'onPinCheckboxClick'
     },
     ui: {
+      $modeSelect: '.__mode-select select',
       $pinCheckboxInput: '.__pin-checkbox input'
+    },
+    behaviors: {
+      Select: {}
+    },
+
+    onRender: function() {
+      this.ui.$modeSelect.val(this.model.get('mode'));
     },
 
     setPin: function() {
       this.ui.$pinCheckboxInput.prop('checked', this.model.get('isPinEnabled'));
+    },
+
+    onModeSelectChange: function() {
+      this.model.set('mode', this.ui.$modeSelect.val());
     },
 
     onPinCheckboxClick: function(ev) {

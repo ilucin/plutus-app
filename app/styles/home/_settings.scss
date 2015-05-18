@@ -19,11 +19,12 @@
     padding: 10px 0;
 
     .label {
-      width: 120px;
+      width: 100px;
       text-align: left;
-      line-height: 40px;
-      color: #4A90E2;
+      line-height: 20px;
+      color: $color-third;
       padding-right: 10px;
+      align-self: center;
     }
 
     .input,
