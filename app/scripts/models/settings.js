@@ -1,9 +1,19 @@
-define(['underscore', 'backbone', 'services/storage'], function(_, Backbone, storage) {
+define(['underscore', 'backbone',
+  'helpers/helpers',
+  'helpers/handlebars',
+  'services/storage'
+], function(_, Backbone,
+  helpers,
+  handlebarsHelpers,
+  storage
+) {
   'use strict';
 
   var SettingsModel = Backbone.Model.extend({
     defaults: {
-      currency: 'kn'
+      currency: 'kn',
+      isPinEnabled: false,
+      pin: ''
     },
 
     initialize: function() {
@@ -17,6 +27,15 @@ define(['underscore', 'backbone', 'services/storage'], function(_, Backbone, sto
 
     onChange: function() {
       storage.saveSettings(this.toJSON());
+      handlebarsHelpers.setCurrency(this.get('currency'));
+    },
+
+    isValidPin: function(pin) {
+      return helpers.hash(pin) === this.get('pin');
+    },
+
+    setPin: function(val) {
+      this.set('pin', helpers.hash(val));
     }
   });
 
