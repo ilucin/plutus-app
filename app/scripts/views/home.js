@@ -32,8 +32,8 @@ define(['underscore', 'marionette', 'hammer', 'config',
     initialize: function() {
       this.menuView = new MenuView();
       this.listenTo(this.menuView, 'close', this._onMenuClose, this);
-      this.listenTo(vent, 'navigation:menu', this._toggleMenu, this);
       this.listenTo(this.menuView, 'menu:item', this.onMenuItem, this);
+      this.listenTo(vent, 'navigation:menu', this._toggleMenu, this);
     },
 
     onRender: function() {
@@ -45,7 +45,8 @@ define(['underscore', 'marionette', 'hammer', 'config',
 
     showContentView: function(ContentView, opts) {
       var self = this;
-      if (!this.contentView || !(this.contentView instanceof ContentView)) {
+      this.pageRegion._ensureElement();
+      if (!(this.contentView instanceof ContentView)) {
         this.contentView = new ContentView(opts);
         if (this.pageRegion.$el.length === 0) {
           this.pageRegion.show(this.contentView);
