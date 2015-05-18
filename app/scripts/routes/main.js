@@ -23,18 +23,28 @@ define(['underscore', 'backbone', 'promise',
 ) {
   'use strict';
 
+  window.location.hash = '';
+  setTimeout(function() {
+    window.addEventListener('hashchange', function(ev) {
+      if (ev.oldURL && ev.newURL && ev.oldURL.split('#')[1] === 'login' && ev.newURL.split('#')[1] === '') {
+        device.exit();
+      }
+    });
+  }, 50);
+
   var MainRouter = {
     routes: {
       '': 'onIndex',
       'login': 'onLogin',
       'logout': 'onLogout',
-      'about': 'onAbout'
+      'about': 'onAbout',
+      'clear-pin': 'onClearPin'
     },
 
     initialize: function() {
       this.mainView = new MainView();
       device.on('back', function() {
-        if (appConfig.environment === 'phonegap' && window.location.hash === '#login') {
+        if (window.location.hash === '#login') {
           device.exit();
         } else {
           navigate.back();
@@ -43,7 +53,7 @@ define(['underscore', 'backbone', 'promise',
     },
 
     onIndex: function() {
-      if (data.user.isLoggedIn()) {
+      if (data.user.isLoggedIn() && !data.settings.get('isPinEnabled')) {
         navigate.toHome();
       } else {
         navigate.toLogin();
@@ -56,7 +66,9 @@ define(['underscore', 'backbone', 'promise',
 
     onLogin: function() {
       this.mainView.showContentView(new LoginView({
-        model: data.user
+        model: data.user,
+        settings: data.settings,
+        mode: data.settings.get('isPinEnabled') ? 'pin' : 'login'
       }), 'login', '', '');
     },
 

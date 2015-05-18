@@ -17,7 +17,6 @@ define(['underscore', 'backbone',
 
   _.extend(app, {
     init: function() {
-      window.location.hash = '';
       app.data = data;
       window.app = this;
 

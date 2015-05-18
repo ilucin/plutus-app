@@ -4,12 +4,14 @@
 
 <div class="__form form">
   <form>
+    {{#if loginMode}}
     <div class="input input-secondary __input __input-email">
       <input type="email" placeholder="email" name="email" value="{{email}}"></input>
     </div>
+    {{/if}}
 
     <div class="input input-secondary __input __input-password">
-      <input type="password" placeholder="password" name="password" value="ivo"></input>
+      <input type="password" placeholder="{{#if loginMode }} password {{else}} pin {{/if}}" name="password" value=""></input>
     </div>
   </form>
 

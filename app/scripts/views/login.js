@@ -18,19 +18,31 @@ define(['underscore', 'marionette',
       $form: 'form'
     },
 
+    initialize: function(opts) {
+      this.settingsModel = opts.settings;
+      this.mode = opts.mode;
+    },
+
     serializeData: function() {
-      return this.model.toJSON();
+      var d = this.model.toJSON();
+      d.loginMode = this.mode === 'login';
     },
 
     onButtonLoginClick: function() {
-      var userData = _.reduce(this.ui.$form.serializeArray(), function(res, val) {
-        res[val.name] = val.value;
-        return res;
-      }, {});
+      if (this.mode === 'login') {
+        var userData = _.reduce(this.ui.$form.serializeArray(), function(res, val) {
+          res[val.name] = val.value;
+          return res;
+        }, {});
 
-      this.model.login(userData).then(function() {
-        nav.toHome();
-      });
+        this.model.login(userData).then(function() {
+          nav.toHome();
+        });
+      } else if (this.mode === 'pin') {
+        if (this.settingsModel.isValidPin(this.$('.__input-password input').val())) {
+          nav.toHome();
+        }
+      }
     },
 
     onAboutClick: function() {

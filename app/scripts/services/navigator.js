@@ -81,7 +81,7 @@ define(function() {
     },
 
     toCheckPin: function() {
-      self.navigate('home/check-pin');
+      self.navigate('check-pin');
     },
 
     toCategoriesAdd: function() {

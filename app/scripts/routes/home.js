@@ -58,7 +58,6 @@ define(['underscore',
     routeNamespace: 'home',
     routes: {
       '': 'onHome',
-      'overview': 'onOverview',
       'accounts': 'onAccounts',
       'accounts/add': 'onAccountsAdd',
       'transaction/add/income': 'onTransactionAddIncome',
@@ -74,42 +73,23 @@ define(['underscore',
       'settings': 'onSettings',
       'set-pin': 'onSetPin',
       'clear-pin': 'onClearPin',
-      'check-pin': 'onCheckPin',
       'menu': 'onMenu'
     },
 
     getView: function() {
-      if (!homeView) {
+      if (!homeView || homeView.isDestroyed) {
         homeView = new HomeView();
       }
       return homeView;
     },
 
-    goToOverview: function() {
-      this.navigate('home/overview', {
-        trigger: true,
-        replace: true
-      });
-    },
-
-    onCheckPin: function() {
-      var self = this;
-      openDialog(new InputDialogView());
-
-      dialogView.show(null, 'enter', '', 'password', 'PIN').then(function(pin) {
-        if (data.settings.isValidPin(pin)) {
-          HomeSubrouter.goToOverview.call(self);
-        }
-        closeDialog();
-      }, closeDialog);
-    },
-
     onHome: function() {
-      if (data.settings.get('isPinEnabled')) {
-        navigate.toCheckPin();
-      } else {
-        HomeSubrouter.goToOverview.call(this);
-      }
+      var self = this;
+      setTimeout(function() {
+        HomeSubrouter.onOverview.call(self);
+      }, 50);
+
+      return ['menu', 'plutus'];
     },
 
     onMenu: function() {
