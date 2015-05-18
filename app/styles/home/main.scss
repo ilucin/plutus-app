@@ -9,6 +9,10 @@
   background-color: $color-primary;
   color: $color-secondary;
 
+  [data-route="home-check-pin"] & {
+    background-color: $color-secondary;
+  }
+
   .__menu-container {
     @include stretch(0, auto, 0, 0);
     width: $menu-width;

@@ -25,14 +25,14 @@
   <div class="__row">
     <div class="label"> currency </div>
     <div class="input">
-      <input type="text" placeholder="Currency" value="{{ currency }}"/>
+      <input type="text" placeholder="Currency" value="{{ currency }}" data-property="currency"/>
     </div>
   </div>
 
   <div class="__row">
     <div class="label"> pin protection </div>
-    <div class="checkbox">
-      <input type="checkbox"/>
+    <div class="checkbox __pin-checkbox">
+      <input type="checkbox" {{#if isPinEnabled }} checked="checked" {{/if}}/>
     </div>
   </div>
 </div>

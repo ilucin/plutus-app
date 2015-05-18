@@ -69,7 +69,8 @@ define(['underscore', 'backbone', 'promise',
   function createSubrouteHandler(subrouter, methodName, subrouterMethod, screenName) {
     MainRouter[methodName] = function() {
       var self = this;
-      this.mainView.showContentView(subrouter.getView(), screenName);
+      this.mainView.$el.attr('data-route', screenName);
+      this.mainView.showContentView(subrouter.getView());
       var menuParams = subrouterMethod.apply(this, arguments);
       if (_.isArray(menuParams)) {
         this.mainView.setNavBarParams.apply(this.mainView, menuParams);

@@ -38,7 +38,7 @@ define(['jquery', 'underscore', 'marionette', 'promise',
     show: function(title, buttonText, value, inputType, placeholder) {
       var self = this;
       this.data = {
-        title: title || 'Type something',
+        title: title,
         button: buttonText || 'ok',
         placeholder: placeholder || 'name',
         value: value || '',

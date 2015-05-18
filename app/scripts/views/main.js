@@ -43,14 +43,10 @@ define(['underscore', 'marionette',
 
     showContentView: function(contentView, className, leftItem, title, rightItem, backHandler) {
       if (contentView !== this.contentView) {
-        this.$el.removeClass('route-' + this.contentViewClassName);
-
         this.contentView = contentView;
         this.contentViewClassName = className;
 
         this.screenRegion.show(contentView);
-
-        this.$el.addClass('route-' + this.contentViewClassName);
       }
 
       if (!(leftItem === undefined && title === undefined && rightItem === undefined && backHandler === undefined)) {
