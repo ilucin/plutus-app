@@ -72,6 +72,18 @@ define(function() {
       self.navigate('home/accounts/' + accountId + '/transactions');
     },
 
+    toSetPin: function() {
+      self.navigate('home/set-pin');
+    },
+
+    toClearPin: function() {
+      self.navigate('home/clear-pin');
+    },
+
+    toCheckPin: function() {
+      self.navigate('home/check-pin');
+    },
+
     toCategoriesAdd: function() {
       self.navigate('home/categories/add');
     },

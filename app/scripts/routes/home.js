@@ -72,6 +72,9 @@ define(['underscore',
       'categories/:categoryId/delete': 'onCategoryDelete',
       'categories/add': 'onCategoriesAdd',
       'settings': 'onSettings',
+      'set-pin': 'onSetPin',
+      'clear-pin': 'onClearPin',
+      'check-pin': 'onCheckPin',
       'menu': 'onMenu'
     },
 
@@ -82,11 +85,31 @@ define(['underscore',
       return homeView;
     },
 
-    onHome: function() {
+    goToOverview: function() {
       this.navigate('home/overview', {
         trigger: true,
         replace: true
       });
+    },
+
+    onCheckPin: function() {
+      var self = this;
+      openDialog(new InputDialogView());
+
+      dialogView.show(null, 'enter', '', 'password', 'PIN').then(function(pin) {
+        if (data.settings.isValidPin(pin)) {
+          HomeSubrouter.goToOverview.call(self);
+        }
+        closeDialog();
+      }, closeDialog);
+    },
+
+    onHome: function() {
+      if (data.settings.get('isPinEnabled')) {
+        navigate.toCheckPin();
+      } else {
+        HomeSubrouter.goToOverview.call(this);
+      }
     },
 
     onMenu: function() {
@@ -99,7 +122,7 @@ define(['underscore',
         model: data.user
       });
 
-      return ['back', 'plutus'];
+      return ['back', 'Accounts'];
     },
 
     onAccountsAdd: function() {
@@ -154,7 +177,7 @@ define(['underscore',
       showHomeContentView(CategoriesView, {
         model: data.user
       });
-      return ['back', 'plutus'];
+      return ['back', 'Categories'];
     },
 
     onCategoriesAdd: function() {
@@ -238,7 +261,50 @@ define(['underscore',
         model: data.settings
       });
 
-      return ['back', 'plutus'];
+      return ['back', 'Settings'];
+    },
+
+    onClearPin: function() {
+      openDialog(new InputDialogView());
+
+      dialogView.show('PIN', 'disable pin', '', 'password', 'Current PIN').then(function(pin) {
+        if (data.settings.isValidPin(pin)) {
+          data.settings.set({
+            pin: null,
+            isPinEnabled: false
+          });
+        }
+        closeDialog();
+      }, closeDialog);
+    },
+
+    onSetPin: function() {
+      openDialog(new InputDialogView());
+
+      function onError() {
+        data.settings.set('isPinEnabled', false);
+        closeDialog();
+      }
+
+      function setNewPin() {
+        dialogView.show('Set new PIN').then(function(pin) {
+          data.settings.setPin(pin);
+          data.settings.set('isPinEnabled', true);
+          closeDialog();
+        }, onError);
+      }
+
+      if (data.settings.get('pin')) {
+        dialogView.show('PIN', 'ok', '', 'password', 'Current PIN').then(function(pin) {
+          if (data.settings.isValidPin(pin)) {
+            setNewPin();
+          } else {
+            onError();
+          }
+        }, onError);
+      } else {
+        setNewPin();
+      }
     },
 
     onOverview: function() {
