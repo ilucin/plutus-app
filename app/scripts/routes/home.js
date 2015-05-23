@@ -267,7 +267,7 @@ define(['underscore',
       }
 
       function setNewPin() {
-        dialogView.show('Set new PIN').then(function(pin) {
+        dialogView.show('Set new PIN', 'save', '', 'password', 'New PIN').then(function(pin) {
           data.settings.setPin(pin);
           data.settings.set('isPinEnabled', true);
           closeDialog();
@@ -291,9 +291,6 @@ define(['underscore',
       showHomeContentView(OverviewView, {
         model: data.user
       });
-      // setTimeout(function() {
-      //   navigate.toTransactionAddIncome();
-      // }, 200);
       return ['menu', 'plutus'];
     }
   };

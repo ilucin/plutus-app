@@ -1,11 +1,11 @@
 /*global define*/
-define(['jquery', 'underscore', 'backbone', 'helpers/servicer'], function($, _, Backbone, servify) {
+define(['promise', 'underscore', 'backbone', 'helpers/servicer'], function(Promise, _, Backbone, servify) {
   'use strict';
 
   var service = servify({
     default: {
       init: function() {
-        return $.Deferred().resolve().promise();
+        return Promise.resolve();
       },
 
       exit: function() {
@@ -16,43 +16,42 @@ define(['jquery', 'underscore', 'backbone', 'helpers/servicer'], function($, _, 
 
     phonegap: {
       init: function() {
-        var $d = $.Deferred();
         var _this = this;
 
-        if (window.cordova) {
-          document.addEventListener('deviceready', function() {
+        return new Promise(function(resolve) {
+          if (window.cordova) {
+            document.addEventListener('deviceready', function() {
 
-            document.addEventListener('pause', function() {
-              _this.trigger('pause');
-            });
+              document.addEventListener('pause', function() {
+                _this.trigger('pause');
+              });
 
-            document.addEventListener('resume', function() {
-              _this.trigger('resume');
-            });
+              document.addEventListener('resume', function() {
+                _this.trigger('resume');
+              });
 
-            document.addEventListener('backbutton', function() {
-              _this.trigger('back');
-            });
+              document.addEventListener('backbutton', function() {
+                _this.trigger('back');
+              });
 
-            document.addEventListener('menubutton', function() {
-              _this.trigger('menu');
-            });
+              document.addEventListener('menubutton', function() {
+                _this.trigger('menu');
+              });
 
-            document.addEventListener('online', function() {
-              _this.trigger('online');
-            });
+              document.addEventListener('online', function() {
+                _this.trigger('online');
+              });
 
-            document.addEventListener('offline', function() {
-              _this.trigger('offline');
-            });
+              document.addEventListener('offline', function() {
+                _this.trigger('offline');
+              });
 
-            $d.resolve();
-          }, false);
-        } else {
-          $d.resolve();
-        }
-
-        return $d.promise();
+              resolve();
+            }, false);
+          } else {
+            resolve();
+          }
+        });
       },
 
       exit: function() {

@@ -26,6 +26,7 @@ define(['underscore', 'marionette',
     serializeData: function() {
       var d = this.model.toJSON();
       d.loginMode = this.mode === 'login';
+      return d;
     },
 
     onButtonLoginClick: function() {

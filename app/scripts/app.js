@@ -7,7 +7,7 @@ define(['underscore', 'backbone',
 ], function(_, Backbone,
   config,
   data,
-  appNavigator,
+  navigate,
   device,
   MainRouter
 ) {
@@ -22,9 +22,9 @@ define(['underscore', 'backbone',
 
       this.config = config;
       this.router = new MainRouter();
-      appNavigator.init(this.router);
+      navigate.init(this.router);
 
-      device.init().done(function() {
+      device.init().then(function() {
         app.trigger('init');
       });
     },
