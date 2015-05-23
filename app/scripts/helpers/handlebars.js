@@ -4,7 +4,7 @@ define(['underscore', 'handlebars'], function(_, Handlebars) {
   var currency;
 
   Handlebars.registerHelper('money', function(val) {
-    return '<span class="value">' + val + ' </span> <span class="currency"> ' + currency + ' </span>';
+    return '<span class="value">' + parseFloat(val, 10).toFixed(2) + ' </span> <span class="currency"> ' + currency + ' </span>';
   });
 
   return {
