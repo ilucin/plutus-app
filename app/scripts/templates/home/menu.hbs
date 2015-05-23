@@ -1,11 +1,14 @@
-{{!-- <div class="menu__close btn"> ✕ </div> --}}
 <div class="menu__content">
   <div class="menu__item-list menu__item-list--top">
-    <div class="item item-manage-accounts touchable" data-menu-item="accounts"> Accounts </div>
-    <div class="item item-manage-categories touchable" data-menu-item="categories"> Categories </div>
+    <div class="item item-manage-accounts touchable" data-menu-item="home/accounts"> Accounts </div>
+    {{!-- <div class="item item-manage-categories touchable" data-menu-item="home/categories"> Categories </div> --}}
   </div>
   <div class="menu__item-list menu__item-list--bottom">
-    <div class="item item-settings touchable" data-menu-item="settings"> Settings </div>
+    <div class="item item-settings touchable" data-menu-item="home/settings"> Settings </div>
+    {{#if isPinEnabled }}
+    <div class="item item-lock touchable" data-menu-item="login"> Lock </div>
+    {{else}}
     <div class="item item-logout touchable" data-menu-item="logout"> Logout </div>
+    {{/if}}
   </div>
 </div>

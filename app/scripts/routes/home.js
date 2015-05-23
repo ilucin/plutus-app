@@ -247,7 +247,7 @@ define(['underscore',
     onClearPin: function() {
       openDialog(new InputDialogView());
 
-      dialogView.show('PIN', 'disable pin', '', 'password', 'Current PIN').then(function(pin) {
+      dialogView.show('PIN', 'disable pin', '', 'number', 'Current PIN').then(function(pin) {
         if (data.settings.isValidPin(pin)) {
           data.settings.set({
             pin: null,
@@ -267,7 +267,7 @@ define(['underscore',
       }
 
       function setNewPin() {
-        dialogView.show('Set new PIN', 'save', '', 'password', 'New PIN').then(function(pin) {
+        dialogView.show('Set new PIN', 'save', '', 'number', 'New PIN').then(function(pin) {
           data.settings.setPin(pin);
           data.settings.set('isPinEnabled', true);
           closeDialog();
@@ -275,7 +275,7 @@ define(['underscore',
       }
 
       if (data.settings.get('pin')) {
-        dialogView.show('PIN', 'ok', '', 'password', 'Current PIN').then(function(pin) {
+        dialogView.show('PIN', 'ok', '', 'number', 'Current PIN').then(function(pin) {
           if (data.settings.isValidPin(pin)) {
             setNewPin();
           } else {

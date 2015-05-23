@@ -7,6 +7,9 @@ define(['underscore', 'marionette', 'helpers/template'], function(_, Marionette,
     events: {
       'click .item': 'onMenuItemClick'
     },
+    modelEvents: {
+      'change:isPinEnabled': 'render'
+    },
 
     initialize: function() {
       this.menuHeaderClickCounter = 0;

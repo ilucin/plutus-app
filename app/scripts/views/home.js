@@ -3,12 +3,14 @@ define(['underscore', 'marionette', 'hammer', 'config',
   'helpers/template',
   'services/vent',
   'services/navigator',
+  'services/data',
   'views/home/menu'
 ], function(_, Marionette, Hammer, config,
   helpers,
   template,
   vent,
   navigate,
+  data,
   MenuView
 ) {
   'use strict';
@@ -30,7 +32,9 @@ define(['underscore', 'marionette', 'hammer', 'config',
     },
 
     initialize: function() {
-      this.menuView = new MenuView();
+      this.menuView = new MenuView({
+        model: data.settings
+      });
       this.listenTo(this.menuView, 'close', this._onMenuClose, this);
       this.listenTo(this.menuView, 'menu:item', this.onMenuItem, this);
       this.listenTo(vent, 'navigation:menu', this._toggleMenu, this);
@@ -72,8 +76,10 @@ define(['underscore', 'marionette', 'hammer', 'config',
     },
 
     onMenuItem: function(item) {
-      navigate.backSilently();
-      navigate.to((item !== 'logout' ? 'home/' : '') + item);
+      if (location.hash === '#home/menu') {
+        navigate.backSilently();
+      }
+      navigate.to(item);
     },
 
     onMenuUnderlayClick: function() {
@@ -124,11 +130,33 @@ define(['underscore', 'marionette', 'hammer', 'config',
     _setupSwipeHandler: function() {
       var self = this;
       var menuRegion = this.menuRegion;
+      var menuEl = menuRegion.el;
+      var $menuEl = menuRegion.$el;
       var menuUnderlayEl = this.ui.$menuUnderlay[0];
       var halfMenu = MENU_WIDTH / 2;
       var panMoveCounter;
+      var currLeft;
+      var style = helpers.setStyleWithPrefixes;
 
-      this.mcMenu = new Hammer(menuRegion.el);
+      this.mcMenu = new Hammer(menuEl);
+
+      function animateToEnd(el, startVal, destVal, step, onDone) {
+        var currVal = startVal;
+
+        function animator() {
+          currVal = startVal > destVal ? (currVal - step) : (currVal + step);
+
+          if ((startVal > destVal && currVal > destVal) || (startVal < destVal && currVal < destVal)) {
+            style(el, 'transform', 'translate3d(' + currVal + 'px, 0, 0)');
+            window.requestAnimationFrame(animator);
+          } else {
+            style(el, 'transform', 'translate3d(' + destVal + 'px, 0, 0)');
+            onDone();
+          }
+        }
+
+        window.requestAnimationFrame(animator);
+      }
 
       function onPanStart() {
         menuRegion.$el.removeClass('left-transition');
@@ -139,27 +167,38 @@ define(['underscore', 'marionette', 'hammer', 'config',
       function onPanMove(ev) {
         panMoveCounter++;
         if (ev.direction === Hammer.DIRECTION_RIGHT || ev.direction === Hammer.DIRECTION_LEFT) {
-          var currLeft = Math.min(Math.max(-MENU_WIDTH, ev.deltaX - (menuRegion.opened ? 0 : MENU_WIDTH)), 0);
-          helpers.setStyleWithPrefixes(menuRegion.el, 'transform', 'translate3d(' + currLeft + 'px, 0, 0)');
-
-          // if (panMoveCounter % 8 === 0) {
-          //   menuUnderlayEl.style.opacity = (currLeft / MENU_WIDTH) + 1;
-          // }
+          currLeft = Math.min(Math.max(-MENU_WIDTH, ev.deltaX - (menuRegion.opened ? 0 : MENU_WIDTH)), 0);
+          style(menuEl, 'transform', 'translate3d(' + currLeft + 'px, 0, 0)');
         }
       }
 
+      function shouldOpen(ev) {
+        return (ev.direction === Hammer.DIRECTION_LEFT && ev.velocityX < 0.7) || (ev.direction === Hammer.DIRECTION_RIGHT && ev.velocityX < -0.7) || (ev.distance > halfMenu && !menuRegion.opened) || (ev.distance < halfMenu && menuRegion.opened);
+      }
+
+      function shouldOpen2(ev) {
+        return (ev.distance > halfMenu && !menuRegion.opened) || (ev.distance < halfMenu && menuRegion.opened);
+      }
+
       function onPanEnd(ev) {
-        menuRegion.$el.addClass('left-transition');
-        helpers.setStyleWithPrefixes(menuRegion.el, 'transform', '');
-        if ((ev.distance > halfMenu && !menuRegion.opened) || (ev.distance < halfMenu && menuRegion.opened)) {
-          self.openMenuBar();
-        } else {
-          if (menuRegion.opened) {
-            navigate.back();
+        var shouldOpenFlag = shouldOpen(ev);
+
+        animateToEnd(menuEl, currLeft, shouldOpenFlag ? 0 : -MENU_WIDTH, Math.max(Math.abs(ev.velocityX * 10), 6), function() {
+          $menuEl.addClass('left-transition');
+
+          if (shouldOpenFlag) {
+            self.openMenuBar();
           } else {
-            self.closeMenuBar();
+            if (menuRegion.opened) {
+              navigate.back();
+            } else {
+              self.closeMenuBar();
+            }
           }
-        }
+          setTimeout(function() {
+            style(menuEl, 'transform', '');
+          }, 200);
+        });
       }
 
       this.mcMenu.on('panstart', onPanStart);

@@ -20,7 +20,7 @@
   }
 
   .__form {
-    height: 210px;
+    height: 230px;
     padding: 0 30px;
   }
 
@@ -37,15 +37,29 @@
     display: block;
   }
 
+  .__button-logout {
+    @include active-bg(rgba(255, 255, 255, 0.2));
+    background-color: transparent;
+    color: $color-primary;
+  }
+
   .__footer {
     flex: 1;
     display: flex;
+    flex-direction: column;
   }
 
   .__app-title {
     margin: auto;
     font-size: 42px;
     font-weight: 200;
+  }
+
+  .__about-container,
+  .__logout-container {
+    flex: 1;
+    align-self: center;
+    display: flex;
   }
 
   .__about {

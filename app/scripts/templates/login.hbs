@@ -11,13 +11,21 @@
     {{/if}}
 
     <div class="input input-secondary __input __input-password">
-      <input type="password" placeholder="{{#if loginMode }} password {{else}} pin {{/if}}" name="password" value=""></input>
+      <input type="{{#if loginMode}}password{{else}}number{{/if}}" placeholder="{{#if loginMode }} password {{else}} pin {{/if}}" name="password" value=""></input>
     </div>
   </form>
 
-  <div class="button __button-login"> go </div>
+  <div class="button __button-login touchable"> go </div>
 </div>
 
 <div class="__footer">
-  <div class="__about"> ? </div>
+  <div class="__about-container">
+    <div class="__about"> ? </div>
+  </div>
+
+  {{#unless loginMode}}
+  <div class="__logout-container">
+    <div class="button __button-logout touchbale"> logout </div>
+  </div>
+  {{/unless}}
 </div>

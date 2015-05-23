@@ -12,6 +12,7 @@ define(['underscore', 'marionette',
     className: 'login',
     events: {
       'click .__button-login': 'onButtonLoginClick',
+      'click .__button-logout': 'onButtonLogoutClick',
       'click .__about': 'onAboutClick'
     },
     ui: {
@@ -48,6 +49,10 @@ define(['underscore', 'marionette',
 
     onAboutClick: function() {
       nav.toAbout();
+    },
+
+    onButtonLogoutClick: function() {
+      nav.toLogout();
     }
   });
 

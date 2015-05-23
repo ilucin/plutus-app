@@ -56,12 +56,15 @@
       opacity: 0;
     }
 
-    @include desktop {
-
-      >div {
+    >div {
+      @include desktop {
         @include stretch(0, 0, 0, 0);
         max-width: 600px;
         margin: auto;
+      }
+
+      @media (min-width: 769px) and (max-width: 1200px) {
+        left: 200px;
       }
     }
   }

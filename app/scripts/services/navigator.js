@@ -28,6 +28,10 @@ define(function() {
       self.navigate('login');
     },
 
+    toLogout: function() {
+      self.navigate('logout');
+    },
+
     toHome: function() {
       self.navigate('home');
     },
