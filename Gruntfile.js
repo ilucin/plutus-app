@@ -47,6 +47,7 @@ module.exports = function(grunt) {
     bower: require('./grunt/bower')(grunt),
     handlebars: require('./grunt/handlebars')(grunt),
     rev: require('./grunt/rev')(grunt),
+    // uglify: require('./grunt/uglify')(grunt),
     shell: require('./grunt/shell')(grunt)
   });
 
@@ -128,9 +129,9 @@ module.exports = function(grunt) {
 
     if (phonegapConfig.gruntBuild) {
       grunt.config('env', 'production');
-      grunt.config('script', script);
+      grunt.config('script', cordovaScript);
       grunt.config('build', 'phonegap');
-      tasks.push('build', 'copy:phonegap');
+      tasks.push('build', 'clean:phonegap', 'copy:phonegap');
     }
 
     if (phonegapConfig.cordovaBuild) {

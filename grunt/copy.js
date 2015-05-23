@@ -30,6 +30,13 @@ module.exports = function() {
         cwd: '<%= config.dist %>',
         dest: '<%= config.phonegap %>',
         src: ['**/*.*']
+      }, {
+        expand: true,
+        cwd: 'assets/res',
+        src: ['**/*.*'],
+        dest: '<%= config.phonegap %>/../res'
+      }, {
+        '<%= config.phonegap %>/../config.xml': 'assets/config.xml'
       }]
     },
     nw: {
