@@ -36,12 +36,20 @@ define(['underscore', 'backbone', 'promise',
 
     initialize: function() {
       this.mainView = new MainView();
+
       device.on('back', function() {
         var hash = window.location.hash;
         if (hash === '#login' || hash === '#home') {
           device.exit();
         } else {
           navigate.back();
+        }
+      });
+
+      device.on('resume', function() {
+        var hash = window.location.hash;
+        if (data.settings.get('isPinEnabled') && hash !== '#login') {
+          navigate.toCheckPin();
         }
       });
     },

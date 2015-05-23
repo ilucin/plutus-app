@@ -1,6 +1,11 @@
-/*global define*/
 define(['promise', 'underscore', 'backbone', 'helpers/servicer'], function(Promise, _, Backbone, servify) {
   'use strict';
+
+  function makeTrigger(obj, ev) {
+    return function() {
+      obj.trigger(ev);
+    };
+  }
 
   var service = servify({
     default: {
@@ -16,35 +21,17 @@ define(['promise', 'underscore', 'backbone', 'helpers/servicer'], function(Promi
 
     phonegap: {
       init: function() {
-        var _this = this;
+        var self = this;
 
         return new Promise(function(resolve) {
           if (window.cordova) {
             document.addEventListener('deviceready', function() {
-
-              document.addEventListener('pause', function() {
-                _this.trigger('pause');
-              });
-
-              document.addEventListener('resume', function() {
-                _this.trigger('resume');
-              });
-
-              document.addEventListener('backbutton', function() {
-                _this.trigger('back');
-              });
-
-              document.addEventListener('menubutton', function() {
-                _this.trigger('menu');
-              });
-
-              document.addEventListener('online', function() {
-                _this.trigger('online');
-              });
-
-              document.addEventListener('offline', function() {
-                _this.trigger('offline');
-              });
+              document.addEventListener('pause', makeTrigger(self, 'pause'));
+              document.addEventListener('resume', makeTrigger(self, 'resume'));
+              document.addEventListener('backbutton', makeTrigger(self, 'back'));
+              // document.addEventListener('menubutton', makeTrigger(self, 'menu'));
+              // document.addEventListener('online', makeTrigger(self, 'online'));
+              // document.addEventListener('offline',  makeTrigger(self, 'offline'));
 
               resolve();
             }, false);
