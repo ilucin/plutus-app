@@ -20,6 +20,10 @@
   display: flex;
   padding: 20px 20px;
 
+  @include desktop {
+    border-radius: 2px;
+  }
+
   .__name {
     width: 150px;
     flex: 1;

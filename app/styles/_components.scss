@@ -21,6 +21,11 @@
     text-align: center;
     min-width: 65%;
     border-radius: 2px;
+
+    @include desktop {
+      max-width: 300px;
+      min-width: 100px;
+    }
   }
 
   .__title {

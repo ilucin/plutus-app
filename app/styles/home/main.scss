@@ -20,6 +20,10 @@
     z-index: 10;
     transform: translate3d(-$menu-width, 0, 0);
 
+    @include desktop {
+      transform: translate3d(0, 0, 0);
+    }
+
     &.opened {
       transform: translate3d(0, 0, 0);
     }
@@ -50,6 +54,15 @@
 
     &.hiding {
       opacity: 0;
+    }
+
+    @include desktop {
+
+      >div {
+        @include stretch(0, 0, 0, 0);
+        max-width: 600px;
+        margin: auto;
+      }
     }
   }
 

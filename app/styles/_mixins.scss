@@ -14,16 +14,6 @@
   }
 }
 
-@mixin active-bg($bg: false) {
-  &.active {
-    @if $bg {
-      background-color: $bg;
-    } @else {
-      background-color: $hover-darker;
-    }
-  }
-}
-
 @mixin disable-input-focus-glow {
   -moz-appearance: none;
   &:focus {
@@ -60,5 +50,28 @@
 @mixin retina {
   @media #{$retina} {
     @content;
+  }
+}
+
+@mixin active-bg($bg: false) {
+  cursor: pointer;
+
+  &.active {
+    @include mobile {
+      @if $bg {
+        background-color: $bg;
+      } @else {
+        background-color: $hover-darker;
+      }
+    }
+  }
+  &:hover {
+    @include desktop {
+      @if $bg {
+       background-color: $bg;
+      } @else {
+       background-color: $hover-darker;
+      }
+    }
   }
 }
