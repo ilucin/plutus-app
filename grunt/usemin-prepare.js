@@ -1,10 +1,10 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function() {
   return {
-    html: '<%= yeoman.app %>/index.html',
+    html: '<%= config.app %>/index.html',
     options: {
-      dest: '<%= yeoman.dist %>'
+      dest: '<%= config.dist %>'
     }
   };
 };

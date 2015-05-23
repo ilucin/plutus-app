@@ -1,13 +1,13 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function() {
   return {
     dist: {
       files: [{
         expand: true,
-        cwd: '<%= yeoman.app %>/images',
+        cwd: '<%= config.app %>/images',
         src: '{,*/}*.{png,jpg,jpeg}',
-        dest: '<%= yeoman.dist %>/images'
+        dest: '<%= config.dist %>/images'
       }]
     }
   };

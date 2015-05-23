@@ -8,8 +8,8 @@ module.exports = function() {
     },
     all: [
       'Gruntfile.js',
-      '<%= yeoman.app %>/scripts/{,*/}*.js',
-      '!<%= yeoman.app %>/scripts/vendor/*',
+      '<%= config.app %>/scripts/{,*/}*.js',
+      '!<%= config.app %>/scripts/vendor/*',
       'test/spec/{,*/}*.js'
     ]
   };

@@ -8,7 +8,7 @@ module.exports = function() {
         amd: true
       },
       files: {
-        '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/**/*.hbs']
+        '.tmp/scripts/templates.js': ['<%= config.app %>/scripts/templates/**/*.hbs']
       }
     }
   };

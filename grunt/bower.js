@@ -3,7 +3,7 @@
 module.exports = function() {
   return {
     all: {
-      rjsConfig: '<%= yeoman.app %>/scripts/main.js'
+      rjsConfig: '<%= config.app %>/scripts/main.js'
     }
   };
 };

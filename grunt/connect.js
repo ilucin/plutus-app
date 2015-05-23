@@ -4,7 +4,7 @@ var mountFolder = function(connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 
-module.exports = function(grunt, lrSnippet, yeomanConfig, SERVER_PORT) {
+module.exports = function(grunt, lrSnippet, configConfig, SERVER_PORT) {
   return {
     options: {
       port: grunt.option('port') || SERVER_PORT,
@@ -17,7 +17,7 @@ module.exports = function(grunt, lrSnippet, yeomanConfig, SERVER_PORT) {
           return [
             lrSnippet,
             mountFolder(connect, '.tmp'),
-            mountFolder(connect, yeomanConfig.app)
+            mountFolder(connect, configConfig.app)
           ];
         }
       }
@@ -26,7 +26,7 @@ module.exports = function(grunt, lrSnippet, yeomanConfig, SERVER_PORT) {
       options: {
         middleware: function(connect) {
           return [
-            mountFolder(connect, yeomanConfig.dist)
+            mountFolder(connect, configConfig.dist)
           ];
         }
       }

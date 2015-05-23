@@ -1,5 +1,8 @@
-/*global require*/
+/*global require, requirejs*/
 'use strict';
+
+var oldRequire = window.require;
+window.require = requirejs;
 
 require.config({
   shim: {
@@ -35,24 +38,24 @@ require.config({
   }
 });
 
-window.throttleForDebug = function throttleForDebug(fun, ms) {
-  var timer;
-  return function() {
-    if (timer) {
-      console.warn('Calling throttled function');
-      debugger;
-      return;
-    }
-    fun.apply(this, arguments);
-    timer = setTimeout(function() {
-      timer = clearTimeout(timer);
-    }, ms || 300);
-  };
-};
+// window.throttleForDebug = function throttleForDebug(fun, ms) {
+//   var timer;
+//   return function() {
+//     if (timer) {
+//       console.warn('Calling throttled function');
+//       debugger;
+//       return;
+//     }
+//     fun.apply(this, arguments);
+//     timer = setTimeout(function() {
+//       timer = clearTimeout(timer);
+//     }, ms || 300);
+//   };
+// };
 
-window.onerror = function onerror() {
-  console.error.apply(console, arguments);
-};
+// window.onerror = function onerror() {
+//   console.error.apply(console, arguments);
+// };
 
 require(['app', 'fastclick', 'helpers/toucher'], function(app, fastclick, toucher) {
   fastclick.attach(document.body);
@@ -63,4 +66,5 @@ require(['app', 'fastclick', 'helpers/toucher'], function(app, fastclick, touche
   });
 
   app.init();
+  window.require = oldRequire;
 });

@@ -4,11 +4,11 @@ module.exports = function() {
   return {
     options: {
       sourceMap: true,
-      includePaths: ['<%= yeoman.app %>/bower_components', '.tmp/styles']
+      includePaths: ['<%= config.app %>/bower_components', '.tmp/styles']
     },
     dist: {
       files: {
-        '.tmp/styles/main.css': '<%= yeoman.app %>/styles/main.scss'
+        '.tmp/styles/main.css': '<%= config.app %>/styles/main.scss'
       }
     }
   };

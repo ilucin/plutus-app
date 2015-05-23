@@ -7,7 +7,7 @@ module.exports = function(grunt, livereloadPort) {
       livereload: true
     },
     sass: {
-      files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+      files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
       tasks: ['sass', 'autoprefixer']
     },
     livereload: {
@@ -15,17 +15,17 @@ module.exports = function(grunt, livereloadPort) {
         livereload: grunt.option('livereloadport') || livereloadPort
       },
       files: [
-        '<%= yeoman.app %>/*.html',
-        // '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-        '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-        '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-        // '<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
+        '<%= config.app %>/*.html',
+        // '{.tmp,<%= config.app %>}/styles/{,*/}*.css',
+        '{.tmp,<%= config.app %>}/scripts/{,*/}*.js',
+        '<%= config.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+        // '<%= config.app %>/scripts/templates/*.{ejs,mustache,hbs}',
         'test/spec/**/*.js'
       ]
     },
     handlebars: {
       files: [
-        '<%= yeoman.app %>/scripts/templates/**/*.hbs'
+        '<%= config.app %>/scripts/templates/**/*.hbs'
       ],
       tasks: ['handlebars']
     }

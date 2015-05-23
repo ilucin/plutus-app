@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function() {
   return {
-    html: ['<%= yeoman.dist %>/{,*/}*.html'],
-    css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+    html: ['<%= config.dist %>/{,*/}*.html'],
+    css: ['<%= config.dist %>/styles/{,*/}*.css'],
     options: {
-      dirs: ['<%= yeoman.dist %>']
+      dirs: ['<%= config.dist %>']
     }
   };
 };

@@ -1,6 +1,8 @@
 {
   "name": "plutus",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Money management app",
+  "repository": "",
   "dependencies": {},
   "devDependencies": {
     "connect-livereload": "~0.5.3",
@@ -29,6 +31,7 @@
     "grunt-usemin": "0.1.13",
     "jshint-stylish": "~1.0.1",
     "load-grunt-tasks": "~3.1.0",
+    "nw": "^0.12.2",
     "time-grunt": "~1.1.1"
   },
   "engines": {
@@ -36,5 +39,12 @@
   },
   "custom": {
     "grunt-usemin": "0.1.12"
+  },
+  "main": "index.html",
+  "scripts": {
+    "start": "nw nw"
+  },
+  "window": {
+    "toolbar": true
   }
 }

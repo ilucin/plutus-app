@@ -8,13 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' *"> -->
     <!-- build:x .empty -->
 <!--     <script src="bower_components/hammer-touchemulator/touch-emulator.js"></script>
     <script> TouchEmulator(); </script> -->
     <!-- endbuild -->
     <script>
       window.ENV = "<%= env %>";
+      window.BUILD = "<%= build %>";
       window.BUILD_DATETIME = "<%= time %>";
     </script>
   <!-- endbuild -->
@@ -34,7 +35,7 @@
 </head>
 <body>
   <div id="main" class="has-navigation"></div>
-  <%= phonegapScript %>
+  <%= script %>
   <!-- build:js scripts/main.js -->
   <script data-main="scripts/main" src="bower_components/requirejs/require.js"></script>
   <!-- endbuild -->

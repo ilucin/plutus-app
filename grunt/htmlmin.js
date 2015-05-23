@@ -6,9 +6,9 @@ module.exports = function() {
       options: {},
       files: [{
         expand: true,
-        cwd: '<%= yeoman.app %>',
+        cwd: '<%= config.app %>',
         src: '*.html',
-        dest: '<%= yeoman.dist %>'
+        dest: '<%= config.dist %>'
       }]
     }
   };

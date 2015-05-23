@@ -6,7 +6,8 @@ var lrSnippet = require('connect-livereload')({
   port: LIVERELOAD_PORT
 });
 
-var phonegapScript = '<script src=\"cordova.js\"></script>';
+var cordovaScript = '<script src=\"cordova.js\"></script>';
+var nwScript = '<script src=\"nw.js\"></script>';
 
 module.exports = function(grunt) {
   // require('time-grunt')(grunt);
@@ -14,20 +15,22 @@ module.exports = function(grunt) {
 
   var date = new Date();
 
-  var yeomanConfig = {
+  var config = {
     app: 'app',
     dist: 'dist',
-    phonegap: 'phonegap/www'
+    phonegap: 'phonegap/www',
+    nw: 'nw'
   };
 
   grunt.initConfig({
     env: grunt.option('env') || process.env.GRUNT_ENV || 'development',
-    phonegapScript: grunt.option('build') === 'phonegap' ? phonegapScript : '',
+    build: grunt.option('build'),
+    script: grunt.option('build') === 'phonegap' ? cordovaScript : '',
     time: date.toDateString() + ' ' + date.toTimeString().split(' ')[0],
-    yeoman: yeomanConfig,
+    config: config,
 
     watch: require('./grunt/watch')(grunt, LIVERELOAD_PORT),
-    connect: require('./grunt/connect')(grunt, lrSnippet, yeomanConfig, SERVER_PORT),
+    connect: require('./grunt/connect')(grunt, lrSnippet, config, SERVER_PORT),
     prompt: require('./grunt/prompt')(grunt),
     jshint: require('./grunt/jshint')(grunt),
     autoprefixer: require('./grunt/autoprefixer')(grunt),
@@ -48,8 +51,8 @@ module.exports = function(grunt) {
   });
 
   grunt.config('copy.index', {
-    src: '<%= yeoman.dist %>/index.html',
-    dest: '<%= yeoman.dist %>/index.html',
+    src: '<%= config.dist %>/index.html',
+    dest: '<%= config.dist %>/index.html',
     options: {
       process: function(content) {
         return grunt.template.process(content);
@@ -83,24 +86,28 @@ module.exports = function(grunt) {
     ]);
   });
 
-  grunt.registerTask('build', [
-    'clean:dist',
-    'createDefaultTemplate',
-    'handlebars',
-    'sass',
-    'autoprefixer',
-    'useminPrepare',
-    'requirejs',
-    // 'imagemin',
-    'htmlmin',
-    'concat',
-    'cssmin',
-    'uglify',
-    'copy',
-    // 'rev',
-    'usemin',
-    'copy:index'
-  ]);
+  grunt.registerTask('build', function(target) {
+    var tasks = [
+      'clean:dist',
+      'createDefaultTemplate',
+      'handlebars',
+      'sass',
+      'autoprefixer',
+      'useminPrepare',
+      'requirejs',
+      // 'imagemin',
+      'htmlmin',
+      'concat',
+      'cssmin',
+      'uglify',
+      'copy',
+      // 'rev',
+      'usemin',
+      'copy:index'
+    ];
+
+    grunt.task.run(tasks);
+  });
 
   grunt.registerTask('phonegap', function(target) {
     if (target === 'no-prompt') {
@@ -121,7 +128,8 @@ module.exports = function(grunt) {
 
     if (phonegapConfig.gruntBuild) {
       grunt.config('env', 'production');
-      grunt.config('phonegapScript', phonegapScript);
+      grunt.config('script', script);
+      grunt.config('build', 'phonegap');
       tasks.push('build', 'copy:phonegap');
     }
 
@@ -146,6 +154,14 @@ module.exports = function(grunt) {
     }
 
     grunt.task.run(tasks);
+  });
+
+  grunt.registerTask('nw', function() {
+    grunt.config('env', 'development');
+    grunt.config('script', nwScript);
+    grunt.config('build', 'desktop');
+
+    grunt.task.run(['clean:nw', 'build', 'copy:nw']);
   });
 
   grunt.registerTask('phonegap-prepare', ['build', 'copy:phonegap']);
