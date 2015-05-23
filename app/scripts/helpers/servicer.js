@@ -1,4 +1,4 @@
-define(['jquery', 'config'], function(config) {
+define(['config'], function(config) {
   'use strict';
 
   return function(services) {

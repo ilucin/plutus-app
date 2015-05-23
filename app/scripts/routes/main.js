@@ -24,13 +24,6 @@ define(['underscore', 'backbone', 'promise',
   'use strict';
 
   window.location.hash = '';
-  setTimeout(function() {
-    window.addEventListener('hashchange', function(ev) {
-      if (ev.oldURL && ev.newURL && ev.oldURL.split('#')[1] === 'login' && ev.newURL.split('#')[1] === '') {
-        device.exit();
-      }
-    });
-  }, 50);
 
   var MainRouter = {
     routes: {
@@ -44,7 +37,8 @@ define(['underscore', 'backbone', 'promise',
     initialize: function() {
       this.mainView = new MainView();
       device.on('back', function() {
-        if (window.location.hash === '#login') {
+        var hash = window.location.hash;
+        if (hash === '#login' || hash === '#home') {
           device.exit();
         } else {
           navigate.back();
