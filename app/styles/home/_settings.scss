@@ -18,6 +18,18 @@
     display: flex;
     padding: 10px 0;
 
+    &.__row--blockifyed {
+      @include mobile {
+        display: block;
+
+        >div {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    &:not(.__row--blockifyed) {}
+
     .label {
       width: 100px;
       text-align: left;
@@ -25,6 +37,10 @@
       color: $color-third;
       padding-right: 10px;
       align-self: center;
+
+      @include desktop {
+        width: 160px;
+      }
     }
 
     .input,
