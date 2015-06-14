@@ -48,7 +48,6 @@ abbr.datetime {
 .button {
   display: inline-block;
   text-align: center;
-  cursor: pointer;
   background-color: $color-primary;
   color: $color-third;
   height: 55px;
@@ -58,6 +57,10 @@ abbr.datetime {
   padding: 0 10px;
 
   @include active-bg(darken($color-primary, 5%));
+
+  .no-touch & {
+    cursor: pointer;
+  }
 }
 
 .buttons {
@@ -73,7 +76,6 @@ abbr.datetime {
   .__selected-value {
     @include active-bg($color-third-light);
     text-align: center;
-    cursor: pointer;
     color: $color-third;
     line-height: 25px;
     font-weight: 200;
@@ -81,6 +83,10 @@ abbr.datetime {
     border: 1px solid $color-third;
     border-radius: 2px;
     background-color: $color-primary-light;
+
+    .no-touch & {
+      cursor: pointer;
+    }
   }
 
   select {
@@ -121,11 +127,14 @@ abbr.datetime {
   .__option {
     @include active-bg($color-third-light);
     text-align: center;
-    cursor: pointer;
     color: $color-third;
     line-height: 25px;
     font-weight: 200;
     padding: 10px 10px;
+
+    .no-touch & {
+      cursor: pointer;
+    }
 
     &.selected {
       font-weight: bold;

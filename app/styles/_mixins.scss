@@ -54,7 +54,9 @@
 }
 
 @mixin active-bg($bg: false) {
-  cursor: pointer;
+  .no-touch & {
+    cursor: pointer;
+  }
 
   &.active {
     @include mobile {
