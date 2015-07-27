@@ -1,17 +1,18 @@
-$mobile: "(max-width: 768px)";
-$desktop: "(min-width: 769px)";
-$small-height: "(max-height: 428px)";
-$too-small-height: "(max-height: 370px)";
-$retina: "(-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 2dppx)";
+$mobile: '(max-width: 768px)';
+$desktop: '(min-width: 769px)';
+$small-height: '(max-height: 428px)';
+$too-small-height: '(max-height: 370px)';
+$retina: '(-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2), (min-resolution: 2dppx)';
 
 $color-primary: #EAEAEA;
 $color-secondary: #EE2C42;
 $color-third: #4A90E2;
 $color-primary-light: #F9F9F9;
+$color-white: #FFFFFF;
 $color-secondary-light: lighten($color-secondary, 30%);
 $color-third-light: lighten($color-third, 30%);
 
-$hover-darker: rgba(0,0,0,0.1);
+$hover-darker: rgba(0, 0, 0, .1);
 $menu-width: 200px;
 $title-bar-height: 55px;
 

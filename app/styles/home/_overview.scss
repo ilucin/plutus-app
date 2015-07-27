@@ -31,11 +31,11 @@
 
     .money {
       padding-top: 40px;
+    }
 
-      .value,
-      .currency {
-        display: block;
-      }
+    .value,
+    .currency {
+      display: block;
     }
   }
 
@@ -53,12 +53,12 @@
   }
 
   .__add-expense-button {
-    background-image: url(../images/ic-add-expense.svg);
     @include active-bg($color-secondary-light);
+    background-image: url('../images/ic-add-expense.svg');
   }
 
   .__add-income-button {
-    background-image: url(../images/ic-add-income.svg);
     @include active-bg($color-third-light);
+    background-image: url('../images/ic-add-income.svg');
   }
 }

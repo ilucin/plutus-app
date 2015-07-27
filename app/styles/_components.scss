@@ -40,12 +40,15 @@
   padding: 20px;
 }
 
-abbr.datetime {
-  display: block;
-  border-bottom: 0;
+abbr {
+  &.datetime {
+    display: block;
+    border-bottom: 0;
+  }
 }
 
 .button {
+  @include active-bg(darken($color-primary, 5%));
   display: inline-block;
   text-align: center;
   background-color: $color-primary;
@@ -55,8 +58,6 @@ abbr.datetime {
   font-size: 20px;
   font-weight: 200;
   padding: 0 10px;
-
-  @include active-bg(darken($color-primary, 5%));
 
   .no-touch & {
     cursor: pointer;
@@ -79,7 +80,7 @@ abbr.datetime {
     color: $color-third;
     line-height: 25px;
     font-weight: 200;
-    padding: 10px 10px;
+    padding: 10px;
     border: 1px solid $color-third;
     border-radius: 2px;
     background-color: $color-primary-light;
@@ -116,11 +117,10 @@ abbr.datetime {
     @include stretch(0, 0, auto, 0);
     border: 1px solid $color-third;
     border-radius: 2px;
-    background-color: $color-primary;
+    background-color: $color-primary-light;
     max-height: 200px;
     overflow: auto;
     box-sizing: border-box;
-    background-color: $color-primary-light;
     transition: max-height 200ms;
   }
 
@@ -130,7 +130,7 @@ abbr.datetime {
     color: $color-third;
     line-height: 25px;
     font-weight: 200;
-    padding: 10px 10px;
+    padding: 10px;
 
     .no-touch & {
       cursor: pointer;
@@ -154,14 +154,14 @@ abbr.datetime {
 }
 
 .back-button {
+  @include active-bg($hover-darker);
   width: 50px;
   height: 50px;
   background: {
     repeat: no-repeat;
-    image: url(../images/ic-back.svg);
+    image: url('../images/ic-back.svg');
     position: 50%;
   }
-  @include active-bg($hover-darker);
 }
 
 .input {

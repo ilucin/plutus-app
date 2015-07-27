@@ -10,114 +10,113 @@ div {
   user-select: none;
 }
 
-input, textarea {
+input,
+textarea {
   box-shadow: none;
   border-radius: 0;
 }
 
-#main {
+.main {
   @include stretch(0, 0, 0, 0);
   background-color: $color-secondary;
+}
 
-  .navigation {
-    display: flex;
+.main-navigation {
+  display: flex;
+  height: $title-bar-height;
+  line-height: $title-bar-height;
+  background-color: $color-secondary;
+
+  .__left,
+  .__right {
+    width: $title-bar-height;
     height: $title-bar-height;
-    line-height: $title-bar-height;
-    background-color: $color-secondary;
+    position: relative;
+  }
 
-    .__left,
-    .__right {
-      width: $title-bar-height;
-      height: $title-bar-height;
-      position: relative;
+  .__center {
+    flex: 1;
+    color: $color-primary;
+    font-size: 20px;
+    font-weight: 200;
+    text-align: center;
+  }
+
+  .__left.__left--back { .__back-button { opacity: 1; z-index: 2; } }
+  .__left.__left--menu { .__menu-button { opacity: 1; z-index: 2; } }
+
+  .__navigation-button {
+    @include stretch(0, auto, 0, 0);
+    width: $title-bar-height;
+    height: $title-bar-height;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 500ms;
+    background: {
+      repeat: no-repeat;
+      position: 50%;
+      size: 24px;
     }
 
-    .__center {
-      flex: 1;
-      color: $color-primary;
-      font-size: 20px;
-      font-weight: 200;
-      text-align: center;
+    .no-touch & {
+      cursor: pointer;
     }
 
-    .__left.__left--back { .__back-button { opacity: 1; z-index: 2; } }
-    .__left.__left--menu { .__menu-button { opacity: 1; z-index: 2; } }
+    &.__menu-button {
+      background-image: url('../images/ic-menu.svg');
 
-    .__navigation-button {
-      @include stretch(0, auto, 0, 0);
-      width: $title-bar-height;
-      height: $title-bar-height;
-      opacity: 0;
-      z-index: 1;
-      transition: opacity 500ms;
-      background: {
-        repeat: no-repeat;
-        position: 50%;
-        size: 24px;
+      @include desktop {
+        opacity: 0 !important;
+        visibility: hidden;
       }
 
-      .no-touch & {
-        cursor: pointer;
-      }
-
-      &.__menu-button {
-        background-image: url('../images/ic-menu.svg');
-
-        &.active { background-size: 20px; }
-        &:active { @include desktop { background-size: 20px; } }
-
-        @include desktop {
-          opacity: 0 !important;
-          visibility: hidden;
-        }
-      }
-
-      &.__back-button {
-        background-image: url('../images/ic-back.svg');
-        background-size: 14px;
-
-        &.active { background-size: 12px; }
-        &:active { @include desktop { background-size: 12px; } }
-      }
+      &.active { background-size: 20px; }
+      &:active { @include desktop { background-size: 20px; } }
     }
 
-    .__app-title {
-      margin: auto;
-      width: 100px;
-      height: $title-bar-height;
-      background: {
-        repeat: no-repeat;
-        image: url('../images/ic-app-title.svg');
-        position: 50%;
-      }
+    &.__back-button {
+      background-image: url('../images/ic-back.svg');
+      background-size: 14px;
+
+      &.active { background-size: 12px; }
+      &:active { @include desktop { background-size: 12px; } }
     }
   }
 
-  .screen {
-    @include stretch(0, 0, 0, 0);
-    overflow: auto;
-  }
-
-  &.has-navigation {
-    .screen {
-      top: $title-bar-height;
+  .__app-title {
+    margin: auto;
+    width: 100px;
+    height: $title-bar-height;
+    background: {
+      repeat: no-repeat;
+      image: url('../images/ic-app-title.svg');
+      position: 50%;
     }
   }
+}
 
-  .spinner {
-    @include stretch(0, 0, 0, 0);
-    background-color: rgba(255, 255, 255, 0.6);
-    display: flex;
-    align-items: center;
-    z-index: 99999;
+.main-screen {
+  @include stretch(0, 0, 0, 0);
+  overflow: auto;
 
-    .__spinner {
-      width: 50px;
-      height: 50px;
-      border-radius: 100%;
-      margin: auto;
-      border: 8px solid $color-secondary;
-      animation: spinner-scaleout 1s ease-out 0s infinite;
-    }
+  .has-navigation & {
+    top: $title-bar-height;
+  }
+}
+
+.main-spinner {
+  @include stretch(0, 0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  z-index: 99999;
+
+  .__spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: auto;
+    border: 8px solid $color-secondary;
+    animation: spinner-scaleout 1s ease-out 0s infinite;
   }
 }

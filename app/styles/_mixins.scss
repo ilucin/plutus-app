@@ -16,6 +16,7 @@
 
 @mixin disable-input-focus-glow {
   -moz-appearance: none;
+
   &:focus {
     outline-color: transparent;
     outline-style: none;
@@ -67,6 +68,7 @@
       }
     }
   }
+
   &:hover {
     @include desktop {
       @if $bg {

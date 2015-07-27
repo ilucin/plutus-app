@@ -29,12 +29,9 @@
   }
 
   .__button-login {
+    display: block;
     margin-top: 40px;
     color: $color-secondary;
-  }
-
-  .__button-login {
-    display: block;
   }
 
   .__button-logout {
@@ -63,6 +60,7 @@
   }
 
   .__about {
+    @include active-bg($hover-darker);
     margin: auto;
     font-size: 26px;
     width: 50px;
@@ -70,6 +68,5 @@
     line-height: 50px;
     text-align: center;
     font-weight: bold;
-    @include active-bg($hover-darker);
   }
 }

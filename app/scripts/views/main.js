@@ -17,7 +17,7 @@ define(['underscore', 'marionette',
     el: '#main',
     template: template('main'),
     regions: {
-      screenRegion: '.screen'
+      screenRegion: '.main-screen'
     },
     events: {
       'click .__navigation-button': 'onNavigationButtonClick'
@@ -26,7 +26,7 @@ define(['underscore', 'marionette',
       $left: '.__left',
       $center: '.__center',
       $right: '.__right',
-      $spinner: '.spinner'
+      $spinner: '.main-spinner'
     },
 
     initialize: function() {
@@ -119,7 +119,7 @@ define(['underscore', 'marionette',
       if (!options.dontNotify) {
         MessageDialogView.show('Error: ' + message);
       }
-    },
+    }
   });
 
   return MainView;

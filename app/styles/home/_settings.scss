@@ -27,43 +27,41 @@
         }
       }
     }
+  }
 
-    &:not(.__row--blockifyed) {}
+  .label {
+    width: 100px;
+    text-align: left;
+    line-height: 20px;
+    color: $color-third;
+    padding-right: 10px;
+    align-self: center;
 
-    .label {
-      width: 100px;
-      text-align: left;
-      line-height: 20px;
-      color: $color-third;
-      padding-right: 10px;
-      align-self: center;
-
-      @include desktop {
-        width: 160px;
-      }
+    @include desktop {
+      width: 160px;
     }
+  }
 
-    .input,
-    .checkbox,
-    .select {
-      flex: 1;
-      min-width: 100px;
+  .input,
+  .checkbox,
+  .select {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .select {
+    select {
+      height: 40px;
     }
+  }
 
-    .select {
-      select {
-        height: 40px;
-      }
-    }
+  .checkbox {
+    text-align: center;
 
-    .checkbox {
-      text-align: center;
-
-      input {
-        display: block;
-        margin: auto;
-        height: 40px;
-      }
+    input {
+      display: block;
+      margin: auto;
+      height: 40px;
     }
   }
 }

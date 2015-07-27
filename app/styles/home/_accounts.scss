@@ -18,7 +18,7 @@
 .account-overview-item {
   @include active-bg;
   display: flex;
-  padding: 20px 20px;
+  padding: 20px;
 
   @include desktop {
     border-radius: 2px;
@@ -50,7 +50,7 @@
     display: block;
     background: {
       color: $color-primary-light;
-      image: url(../images/ic-correction.svg);
+      image: url('../images/ic-correction.svg');
       size: 100%;
       position: 50%;
       repeat: no-repeat;
@@ -78,7 +78,7 @@
   .__button-delete {
     width: 30px;
     background: {
-      image: url(../images/ic-delete.svg);
+      image: url('../images/ic-delete.svg');
       size: 20px;
       position: 50%;
       repeat: no-repeat;

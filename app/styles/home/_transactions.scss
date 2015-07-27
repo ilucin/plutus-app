@@ -1,5 +1,4 @@
 .home-transactions {
-
   .__transactions {
     @include stretch(0, 0, 0, 0);
     overflow: auto;
@@ -7,10 +6,9 @@
 }
 
 .transaction-item {
+  @include active-bg;
   padding: 8px 20px;
   position: relative;
-
-  @include active-bg();
 
   .__right {
     width: 200px;
